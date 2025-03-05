@@ -1,4 +1,6 @@
-These files are emulation batach files designed to safely trigger security alerts
+# Batch File Triggers
+
+These files are emulation batch files designed to safely trigger security alerts
 
 The 2 batch files were created for all MS supported versions of Windows
 
@@ -20,3 +22,15 @@ Expect this file to take 5 to 10 minutes to run...
 To avoid this file being quarantined by EDR prior to execution, it is advised to place the EDR in audit before downloading.
 
 For questions and modifications, contact darhicks@cisco.com
+
+
+# Powershell trigger
+
+***NOTE:*** You need to run the powershell version in Powershell-Core 7, and you need to run it as admin.
+
+This does all the same things as the two batch files, except 
+* They do it faster
+* There's a check for your local subnet, so it scans that subnet, instead. 
+* It adds some more things which your EDR will find threatening (but aren't actually dangerous)
+
+If you have trouble with the powershell one, hit up mikesim@cisco.com . I might even answer.

