@@ -5,10 +5,10 @@ The "Cisco Cisco XDR Windows Triggers" version gives user control menu for each 
 The "Cisco XDR Windows Triggers-no prompts" version is intended to be scheduled to run periodically without any user prompting
 
 These files will create 6 XDR Incidents
-  2) endpoint detections: LSASS Memory Dump critical alert and W32.ComsvcsDumped Medium Alert
-  2) NVM detections: Use of Environment Variables and Content Download Using Powershell Critical Alerts
-  1) Network detection: DNS Abuse critical alert
-  1) Firewall detection: Potentially Harmful Hidden File Extension
+  1) 2X endpoint detections: LSASS Memory Dump critical alert and W32.ComsvcsDumped Medium Alert
+  2) 2X NVM detections: Use of Environment Variables and Content Download Using Powershell Critical Alerts
+  3) 1 Network detection: DNS Abuse critical alert
+  4) 1 Firewall detection: Potentially Harmful Hidden File Extension
 
 XDR will correlate these 4 telemetry sources and 6 detections all aggregated to the associated host.
 Note: If this batch file is applied to several hosts, XDR will correlate the hosts together based on MITRE detections
