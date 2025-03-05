@@ -1,7 +1,9 @@
 These files are emulation batach files designed to safely trigger security alerts
 
 The 2 batch files were created for all MS supported versions of Windows
+
 The "Cisco Cisco XDR Windows Triggers" version gives user control menu for each detection trigger or to run all 4
+
 The "Cisco XDR Windows Triggers-no prompts" version is intended to be scheduled to run periodically without any user prompting
 
 These files will create 6 XDR Incidents
