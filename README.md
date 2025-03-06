@@ -33,4 +33,13 @@ This does all the same things as the two batch files, except
 * There's a check for your local subnet, so it scans that subnet, instead. 
 * It adds some more things which your EDR will find threatening (but aren't actually dangerous)
 
+## Usage
+1. Either put your EDR in audit mode, or save the file somewhere which is excluded by anti-malware scanning.
+2. In your powershell window, type "Set Execution-Policy Bypass" and press enter.
+3. Run ./triggerscript.ps1 from that directory using pwsh (Powershell 7 Core). If you're a local admin, it'll automatically continue. If you run it as a regular user, it'll spawn a UAC window, and then a new window, if you have local admin rights. If you're not a local admin, it'll exit.
+4. Select one of the five menu options, or just wait ten seconds, and it'll run all scans.
+5. When it gets to the network scan (about two seconds later; don't go anywhere) it'll prompt you if you want to scan the local subnet (the default) or a remote subnet ***(MUST*** be an RFC-1918 address.) Make your choice, and enter a network in CIDR notation.
+6. Go grab a coffee or something; this takes a while.
+7. Enjoy watching XDR light up like a Christmas tree.
+
 If you have trouble with the powershell one, hit up mikesim@cisco.com . I might even answer.
