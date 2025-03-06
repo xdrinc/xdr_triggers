@@ -10,6 +10,36 @@ if (-not (Check-Admin)) {
     exit
 }
 
+# Function to select network range with timeout
+function Select-NetworkRange {
+    Write-Host "Choose network range to scan:" -ForegroundColor Green
+    Write-Host "1) Use the network defined by the NIC"
+    Write-Host "2) Enter a custom RFC1918 network range (e.g., 192.168.1.0/24)"
+    
+    $netChoice = $null
+    $timer = [Diagnostics.Stopwatch]::StartNew()
+    while ($timer.Elapsed.TotalSeconds -lt 10 -and -not $netChoice) {
+        if ([Console]::KeyAvailable) {
+            $netChoice = Read-Host "Enter your choice (1-2) [Default: 1]"
+        }
+    }
+    if (-not $netChoice) { $netChoice = "1" }
+    
+    if ($netChoice -eq "1") {
+        return $null  # Use default NIC network
+    } else {
+        while ($true) {
+            $customRange = Read-Host "Enter an RFC1918 network range (e.g., 192.168.1.0/24)"
+            if ($customRange -match "^(10\.\d+\.\d+\.\d+/\d+|172\.(1[6-9]|2[0-9]|3[01])\.\d+\.\d+/\d+|192\.168\.\d+\.\d+/\d+)$") {
+                return $customRange
+            } else {
+                Write-Host "Invalid RFC1918 address range. Please enter a valid private network." -ForegroundColor Red
+            }
+        }
+    }
+}
+
+
 # Define function to scan network
 function Start-NetworkScan {
     param([string[]]$IPs)
@@ -39,26 +69,33 @@ function Start-NetworkScan {
     }
 }
 
-# Define function to get active IPs from full subnet sequentially and run scan immediately
+# Function to get active IPs based on selection
 function Get-ActiveIPs {
-    $gateway = (Get-NetRoute -DestinationPrefix "0.0.0.0/0").NextHop
-    $nic = Get-NetIPAddress | Where-Object { $_.InterfaceIndex -eq (Get-NetRoute | Where-Object { $_.NextHop -eq $gateway }).InterfaceIndex -and $_.AddressFamily -eq 'IPv4' }
+    $networkRange = Select-NetworkRange
     
-    if (-not $nic) {
-        Write-Host "Error: Could not determine network interface. Continuing..." -ForegroundColor Yellow
-        return @()
+    if (-not $networkRange) {
+        $gateway = (Get-NetRoute -DestinationPrefix "0.0.0.0/0").NextHop
+        $nic = Get-NetIPAddress | Where-Object { $_.InterfaceIndex -eq (Get-NetRoute | Where-Object { $_.NextHop -eq $gateway }).InterfaceIndex -and $_.AddressFamily -eq 'IPv4' }
+        
+        if (-not $nic) {
+            Write-Host "Error: Could not determine network interface. Continuing..." -ForegroundColor Yellow
+            return @()
+        }
+        
+        $ipParts = $nic.IPAddress -split '\.'
+        if ($ipParts.Count -ne 4) {
+            Write-Host "Error: Invalid IPv4 address format. Continuing..." -ForegroundColor Yellow
+            return @()
+        }
+        
+        $excludedLastOctet = [int]$ipParts[3]
+        $ipRange = 2..254 | Where-Object { $_ -ne $excludedLastOctet }
+    } else {
+        $ipParts = $networkRange -split '\.'
+        $ipRange = 1..254
     }
     
-    $ipParts = $nic.IPAddress -split '\.'
-    if ($ipParts.Count -ne 4) {
-        Write-Host "Error: Invalid IPv4 address format. Continuing..." -ForegroundColor Yellow
-        return @()
-    }
-    
-    $excludedLastOctet = [int]$ipParts[3]
-    $ipRange = 2..254 | Where-Object { $_ -ne $excludedLastOctet }
-    
-    Write-Host "Pinging entire subnet sequentially to find active hosts and scanning immediately..." -ForegroundColor Cyan
+    Write-Host "Pinging selected subnet sequentially to find active hosts and scanning immediately..." -ForegroundColor Cyan
     $activeIPs = @()
     
     foreach ($i in $ipRange) {
