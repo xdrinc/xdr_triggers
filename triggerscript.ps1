@@ -140,14 +140,21 @@ function Trigger-Firewall {
     }
 }
 
-# Main menu
+# Main menu with timeout
 Write-Host "Choose an option:" -ForegroundColor Green
 Write-Host "1) EDR trigger"
 Write-Host "2) NVM trigger"
 Write-Host "3) NDR trigger"
 Write-Host "4) Firewall trigger"
 Write-Host "5) ALL TRIGGERS"
-$choice = Read-Host "Enter your choice (1-5) [Default: 5]"
+
+$choice = $null
+$timer = [Diagnostics.Stopwatch]::StartNew()
+while ($timer.Elapsed.TotalSeconds -lt 10 -and -not $choice) {
+    if ([Console]::KeyAvailable) {
+        $choice = Read-Host "Enter your choice (1-5) [Default: 5]"
+    }
+}
 if (-not $choice) { $choice = "5" }
 
 switch ($choice) {
