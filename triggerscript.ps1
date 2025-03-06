@@ -6,7 +6,7 @@ function Check-Admin {
 
 if (-not (Check-Admin)) {
     Write-Host "Elevating privileges..." -ForegroundColor Yellow
-    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    Start-Process pwsh.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
     exit
 }
 
@@ -92,7 +92,8 @@ function Trigger-NVM {
     Try {
         Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/homepage/2025/nvidia-cisco-ai-2400x1028.jpg' -OutFile "$env:TEMP\Wallpaper.jpg"
         Remove-Item "$env:TEMP\Wallpaper.jpg"
-        Set-Location -LiteralPath 'C:\`$Recycle.Bin\'
+        Set-Location -LiteralPath 'C:\$Recycle.Bin\'
+
         if (Test-Path -Path ./metasploit) {
             Remove-Item -Path ./metasploit -Recurse
             }
