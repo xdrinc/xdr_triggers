@@ -26,7 +26,7 @@ For questions and modifications, contact darhicks@cisco.com
 
 # Powershell trigger
 
-***NOTE:*** You need to run the powershell version in Powershell-Core 7, and you need to run it as admin. You can get that from [Microsoft]:(https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5).
+***NOTE:*** You need to run the powershell version in Powershell-Core 7, and you need to run it as admin. You can get that from [Microsoft](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5).
 
 This does all the same things as the two batch files, except 
 * They do it faster
