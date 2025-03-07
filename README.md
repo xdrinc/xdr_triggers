@@ -1,125 +1,50 @@
+# **Cisco XDR Trigger Script - Automated Alert Generation**
 
+## **Overview**
+This script is designed to simulate **various security threats and attack techniques** to help customers validate their **Cisco (XDR) PoV**. It runs controlled, benign-but-scary-looking security tests that generate alerts, allowing security teams to **evaluate detection capabilities, fine-tune policies, and enhance threat response workflows**.
 
+## **Tests Included**
+The script executes simulations based on **MITRE ATT&CK Tactics & Techniques**. Each test triggers specific behaviors that should be detected by an XDR platform.
 
-# XDR Trigger Simulation Script
+### **1️⃣ Endpoint Detection and Response (EDR) Tests**
+✅ **T1003.001 - LSASS Memory Dump** (Simulates credential dumping via `rundll32.exe`)  
+✅ **T1059.001 - PowerShell Download of Mimikatz** (Simulates execution of an in-memory attack tool)
 
-## Overview
-This PowerShell script simulates various cybersecurity incidents to trigger detection alerts in an Extended Detection and Response (XDR) system. It includes:
+### **2️⃣ Network Visibility Module (NVM) Tests**
+✅ **T1027.010 - Base64 Encoding Obfuscation** (Tests command obfuscation detection)  
+✅ **T1059.001 - Connection to Raw Public IP** (Simulates accessing a suspicious IP)  
+✅ **T1090.003 - Multi-hop Proxy via TOR Exit Node** (Tests proxy-based evasion techniques)  
+✅ **T1105 - Abuse of DNSAPI.DLL for network request** (Simulates DNS-based C2 traffic)
 
-- **EDR Simulation**: Memory dumping, Mimikatz execution.
-- **NDR Simulation**: UDP-based C2 communication, malicious file downloads.
-- **Firewall Simulation**: Random IP-based HTTP requests.
-- **NVM Simulation**: Various MITRE ATT&CK TTPs, including obfuscation, command execution, and DNS abuse.
+### **3️⃣ Network Detection and Response (NDR) Tests**
+✅ **T1041 - Exfiltration Over C2 Channel** (Simulates large data exfiltration over UDP)  
+✅ **T1105 - Ingress Tool Transfer** (Simulates malware download attempt)  
+✅ **T1046 - Network Service Scanning** (Conducts a local subnet port scan)
 
-## Prerequisites
-### Install PowerShell Core 7.5+
-The script requires **PowerShell Core (7.5 or later)** for execution.
+### **4️⃣ Firewall Tests**
+✅ **T1090 - Connection Proxy** (Tests firewall detection of external proxying)
 
-#### Windows:
-1. Download PowerShell Core from the official Microsoft site:
-   ```powershell
-   winget install --id Microsoft.PowerShell -e
-   ```
-2. Verify installation:
-   ```powershell
-   pwsh --version
-   ```
+## **How It Works**
+1. **User selects a test or runs all tests** via an interactive menu.  
+2. The script **executes security behaviors** corresponding to real-world attack techniques.  
+3. Each test **logs results to an HTML report**, recording:
+   - **TTP Name**
+   - **TTP Number**
+   - **Test Result (Success/Failure)**
+   - **Timestamp**
+   - **MITRE ATT&CK Link** for further reference.  
+4. The final report is saved as `XDR_Test_Report.html` for **analysis and sharing**.
 
-#### Linux/macOS:
-1. Install via package manager:
-   ```sh
-   curl -sSL https://aka.ms/install-powershell.sh | bash
-   ```
-2. Verify installation:
-   ```sh
-   pwsh --version
-   ```
+## **Benefits for Customers**
+✅ **Validates XDR effectiveness** by generating real-world attack behaviors.  
+✅ **Helps fine-tune security policies** to improve detection accuracy.  
+✅ **Reduces false negatives** by ensuring all expected alerts trigger correctly.  
+✅ **Provides documented test results** for compliance and security audits.  
+✅ **Enhances incident response workflows** by ensuring security teams can detect and respond efficiently.  
 
-## Usage Instructions
-### 1. Download and Execute the Script
-To execute the script **without saving to disk**:
-```powershell
-pwsh -ExecutionPolicy Bypass -NoProfile -Command "iwr -UseBasicParsing 'https://raw.githubusercontent.com/xdrinc/xdr_triggers/main/triggerscript.ps1' | iex"
-```
+## **Next Steps**
+- **Run the script** and analyze how your XDR solution reacts to each test.  
+- **Use the report** to identify gaps in detection and improve configurations.  
+- **Share results** with security engineers to refine your security posture.  
 
-### 2. Running the Script
-When executed, the script presents a menu:
-```powershell
-Choose an option:
-1) EDR Trigger
-2) NVM Trigger
-3) NDR Trigger
-4) Firewall Trigger
-5) ALL TRIGGERS (default after 10s)
-```
-
-- **If no input is provided within 10 seconds, it defaults to ALL TRIGGERS.**
-
-### 3. Output Report
-- The script logs the success/failure of each attack simulation.
-- A final report is stored in:
-  ```
-  C:\Users\<YourUser>\Downloads\Trigger_Report.txt
-  ```
-- The user is notified at the end about the report location.
-
-## MITRE ATT&CK Coverage
-The script simulates several **MITRE ATT&CK Tactics & Techniques**, including:
-- **Credential Access** (T1003.001, T1059.001)
-- **Defense Evasion** (T1027.010, T1564.001)
-- **Command & Control** (T1041, T1090.003)
-- **Execution** (T1059.001)
-- **Exfiltration** (T1105)
-
-## Notes
-- This script is for **training and detection validation purposes only**.
-- Use it only in **controlled environments** with proper authorization.
-- Running this in a **production environment** may trigger security alerts.
-
-## Troubleshooting
-### 1. PowerShell Execution Policy Errors
-If execution is blocked:
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force
-```
-
-### 2. Script Not Running in PowerShell Core
-Ensure you are using PowerShell 7.5+:
-```powershell
-pwsh -ExecutionPolicy Bypass -File triggerscript.ps1
-```
-
-### 3. Network Scan Not Detecting Hosts
-- Ensure **Windows Defender Firewall** is disabled (or configured to allow ICMP pings).
-- Run as **Administrator**:
-  ```powershell
-  Start-Process pwsh -Verb RunAs
-  ```
-
----
-_If you have questions or concerns, contact Mike Simone (mikesim@cisco.com). I won't answer, but it will make you feel better._
-
-# Batch File Triggers
-
-These files are emulation batch files designed to safely trigger security alerts
-
-The 2 batch files were created for all MS supported versions of Windows
-
-The "Cisco Cisco XDR Windows Triggers" version gives user control menu for each detection trigger or to run all 4
-
-The "Cisco XDR Windows Triggers-no prompts" version is intended to be scheduled to run periodically without any user prompting
-
-These files will create 6 XDR Incidents
-  1) 2X endpoint detections: LSASS Memory Dump critical alert and W32.ComsvcsDumped Medium Alert
-  2) 2X NVM detections: Use of Environment Variables and Content Download Using Powershell Critical Alerts
-  3) 1 Network detection: DNS Abuse critical alert
-  4) 1 Firewall detection: Potentially Harmful Hidden File Extension
-
-XDR will correlate these 4 telemetry sources and 6 detections all aggregated to the associated host.
-Note: If this batch file is applied to several hosts, XDR will correlate the hosts together based on MITRE detections
-Note: Running in administrative mode is not necessary. No additional tools are required.
-Expect this file to take 5 to 10 minutes to run...
-
-To avoid this file being quarantined by EDR prior to execution, it is advised to place the EDR in audit before downloading.
-
-For questions and modifications, contact darhicks@cisco.com
+🚀 **This script enables security teams to continuously validate and improve their XDR defenses.**
