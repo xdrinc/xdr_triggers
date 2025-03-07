@@ -26,7 +26,7 @@ For questions and modifications, contact darhicks@cisco.com
 
 # Powershell trigger
 
-***NOTE:*** You need to run the powershell version in Powershell-Core 7, and you need to run it as admin.
+***NOTE:*** You need to run the powershell version in Powershell-Core 7, and you need to run it as admin. You can get that from [Microsoft]:(https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5).
 
 This does all the same things as the two batch files, except 
 * They do it faster
@@ -35,7 +35,10 @@ This does all the same things as the two batch files, except
 
 ## Usage
 1. Either put your EDR in audit mode, or save the file somewhere which is excluded by anti-malware scanning.
-2. In your powershell window, type "Set Execution-Policy Bypass" and press enter.
+2. In your powershell window, set your execution policy to "Bypass"
+``` powershell
+Set Execution-Policy Bypass
+```
 3. Run ./triggerscript.ps1 from that directory using pwsh (Powershell 7 Core). If you're a local admin, it'll automatically continue. If you run it as a regular user, it'll spawn a UAC window, and then a new window, if you have local admin rights. If you're not a local admin, it'll exit.
 4. Select one of the five menu options, or just wait ten seconds, and it'll run all scans.
 5. When it gets to the network scan (about two seconds later; don't go anywhere) it'll prompt you if you want to scan the local subnet (the default) or a remote subnet ***(MUST*** be an RFC-1918 address.) Make your choice, and enter a network in CIDR notation.
