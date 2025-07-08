@@ -8,7 +8,7 @@ echo.
 rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump PID lsass.dmp full
 echo.
 ::NVM
-echo NVM: This trigger will download a picture from Cisco from Cisco into memory, and then remove it using a variable.
+echo NVM: This trigger will download a picture from Cisco from Cisco into memory, and then remove it using a variable. The RULE triggers 2 NVM detections: "Content Download Using Powershell" and "Use of Environment Variables for Payload Execution"
 powershell -command "Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/homepage/2025/nvidia-cisco-ai-2400x1028.jpg' -Outfile \"$env:TEMP\Wallpaper.jpg\"; Remove-Item \"$env:TEMP\Wallpaper.jpg\""
 ::UMBRELLA
 ::echo.
