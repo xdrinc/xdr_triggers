@@ -1,4 +1,5 @@
 @echo off
+::For details or assistance with this script, contact Darryl Hicks (darhicks@cisco.com)
 setlocal enabledelayedexpansion
 echo.
 ::EDR
@@ -17,7 +18,7 @@ powershell -command "Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/c
 ::echo.
 ::FIREWALL
 echo.
-echo Firewall: This command will Trigger a Firewall alert by requesting vbs script from a random IP using CURL. It is expected this attempt will fail. Please wait.
+echo This triggers a firewall "Potentially Hidden File Extension" Alert by attempting a CURL for vbs script from never before seen IP address. It is expected this attempt will fail. Please wait.
 echo.
 echo It is expected this attempt will fail. Please wait.
 set /a x1=(%RANDOM% %% 256)
