@@ -1,5 +1,15 @@
 @echo off
-:: For questions or modifications contact Darryl Hicks (darhicks@cisco.com)
+echo XX    XX DDDDDD   RRRRRR
+echo  XX  XX  DD   DD  RR   RR
+echo   XXXX   DD    DD RR   RR
+echo   XXXX   DD    DD RRRRRR
+echo  XX  XX  DD   DD  RR  RR
+echo XX    XX DDDDDD   RR   RR
+echo.
+echo For details or assistance with this script, contact Darryl Hicks (darhicks@cisco.com)
+echo.
+echo.
+echo.
 setlocal enabledelayedexpansion
 :menu
 cls
