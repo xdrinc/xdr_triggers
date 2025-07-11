@@ -1,5 +1,13 @@
 @echo off
-::For details or assistance with this script, contact Darryl Hicks (darhicks@cisco.com)
+echo XX    XX DDDDDD   RRRRRR
+echo  XX  XX  DD   DD  RR   RR
+echo   XXXX   DD    DD RR   RR
+echo   XXXX   DD    DD RRRRRR
+echo  XX  XX  DD   DD  RR  RR
+echo XX    XX DDDDDD   RR   RR
+echo.
+echo.
+echo For details or assistance with this script, contact Darryl Hicks (darhicks@cisco.com)
 setlocal enabledelayedexpansion
 echo.
 ::EDR
@@ -49,6 +57,6 @@ echo.
 echo Network Emulation Tasks completed.
 echo.
 echo.
-echo Failures were expected. All Tests Completed Successfully!
+echo Failures were expected. All Tests Completed Successfully! There should now be a new incident in XDR.
 echo.
 exit
