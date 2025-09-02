@@ -1,4 +1,5 @@
 @echo off
+cls
 echo XX    XX DDDDDD   RRRRRR
 echo  XX  XX  DD   DD  RR   RR
 echo   XXXX   DD    DD RR   RR
@@ -12,7 +13,6 @@ echo.
 echo.
 setlocal enabledelayedexpansion
 :menu
-cls
 echo Choose an option:
 echo 1) EDR trigger
 echo 2) NVM trigger
