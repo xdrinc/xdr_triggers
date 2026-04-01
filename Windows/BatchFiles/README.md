@@ -1,12 +1,13 @@
 # Batch File Triggers
+(version 9 adds administrator check, reviesed NVM detection, and new abuse IPs changed from Comcast to Test-Net and Cisco IPs)
 
 These files are emulation batch files designed to safely trigger security alerts
 
 The 2 batch files were created for all MS supported versions of Windows
 
-The "Cisco Cisco XDR Windows Triggers" version gives user control menu for each detection trigger or to run all 4
+The "Cisco XDR Windows Triggers" version gives user control menu for each detection trigger or to run all 4
 
-The "Cisco XDR Windows Triggers-no prompts" version is intended to be scheduled to run periodically without any user prompting
+The "Cisco XDR Windows Triggers-no prompts" version is intended to be scheduled to run periodically without any user prompting with the same results.
 
 These files will create 6 XDR Incidents
   1) 2X endpoint detections: LSASS Memory Dump critical alert and W32.ComsvcsDumped Medium Alert
