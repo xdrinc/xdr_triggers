@@ -14,7 +14,14 @@ echo.
 echo.
 echo.
 net session >nul 2>&1
-if %errorlevel% neq 0 goto admin
+if %errorlevel% neq 0 (
+    powershell -Command "Write-Host '[ERROR]' -ForegroundColor Red -NoNewline; Write-Host ' This script must be run as Administrator.'"
+    echo.
+    echo Trying to Elevate permissions to run. On the next 2 popups, Click RUN and CONTINUE.
+    timeout /t 5 /nobreak >nul
+    powershell -Command "Start-Process '%~f0' -Verb RunAs"
+    exit /b
+)
 setlocal enabledelayedexpansion
 echo Choose an option:
 echo 1) Endpoint (Antivirus) trigger
@@ -182,15 +189,6 @@ echo.
 echo Press any key return to the Menu
 pause >nul
 goto menu
-
-:admin
-echo.
-echo This utility requires administrative rights to run correctly.
-echo Please try again, right-click on the file and select "Run ad Administrator"
-echo.
-echo Pressing Any Key Exits
-pause >nul
-exit
 
 :exit
 echo.
