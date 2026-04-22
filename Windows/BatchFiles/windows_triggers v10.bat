@@ -79,12 +79,12 @@ echo This will take some time.......
 echo.
 :: Task 1: Ping 203.0.113.53 UDP port 53
 echo Starting Task 1: Pinging 203.0.113.53 (TEST-NET) UDP port 53...
-powershell -Command "1..9999 | ForEach-Object { Write-Progress -Activity 'Pinging 203.0.113.53' -PercentComplete ($_/100); $udpClient = New-Object System.Net.Sockets.UdpClient('203.0.113.53', 53); $data = [System.Text.Encoding]::ASCII.GetBytes('A' * 1200); $udpClient.Send($data, $data.Length) | Out-Null; Start-Sleep -Milliseconds 25 }"
+powershell -Command "1..11000 | ForEach-Object { Write-Progress -Activity 'Pinging 203.0.113.53' -PercentComplete ($_/100); $udpClient = New-Object System.Net.Sockets.UdpClient('203.0.113.53', 53); $data = [System.Text.Encoding]::ASCII.GetBytes('A' * 1200); $udpClient.Send($data, $data.Length) | Out-Null; Start-Sleep -Milliseconds 25 }"
 echo.
 timeout /t 30
 echo.
 echo Starting Task 2: Pinging 64.102.6.247 (Cisco) UDP port 53...
-powershell -Command "1..9999 | ForEach-Object { Write-Progress -Activity 'Pinging 64.102.6.247' -PercentComplete ($_/100); $udpClient = New-Object System.Net.Sockets.UdpClient('64.102.6.247', 53); $data = [System.Text.Encoding]::ASCII.GetBytes('A' * 1200); $udpClient.Send($data, $data.Length) | Out-Null; Start-Sleep -Milliseconds 25 }"
+powershell -Command "1..11000 | ForEach-Object { Write-Progress -Activity 'Pinging 64.102.6.247' -PercentComplete ($_/100); $udpClient = New-Object System.Net.Sockets.UdpClient('64.102.6.247', 53); $data = [System.Text.Encoding]::ASCII.GetBytes('A' * 1200); $udpClient.Send($data, $data.Length) | Out-Null; Start-Sleep -Milliseconds 25 }"
 echo.
 echo Tasks completed.
 goto end
