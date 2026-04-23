@@ -39,7 +39,7 @@ The script requires **PowerShell Core (7.5 or later)** for execution.
 ### 1. Download and Execute the Script
 To execute the script **without saving to disk**:
 ```powershell
-pwsh -ExecutionPolicy Bypass -NoProfile -Command "iwr -UseBasicParsing 'https://raw.githubusercontent.com/xdrinc/xdr_triggers/main/triggerscript.ps1' | iex"
+pwsh -ExecutionPolicy Bypass -NoProfile -Command "iwr -UseBasicParsing 'https://raw.githubusercontent.com/xdrinc/xdr_triggers/refs/heads/main/Windows/Powershell/XDRTriggers.ps1' | iex"
 ```
 
 ### 2. Running the Script
