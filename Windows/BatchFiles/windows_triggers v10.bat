@@ -25,7 +25,7 @@ if %errorlevel% neq 0 (
 setlocal enabledelayedexpansion
 echo Choose an option:
 echo 1) Endpoint (Antivirus) trigger
-echo 2) Endpoint Kernal trigger
+echo 2) NVM Endpoint Kernal trigger
 echo 3) Network trigger
 echo 4) Firewall trigger
 echo 5) ALL 4 TRIGGERS
@@ -63,9 +63,9 @@ echo.
 echo This triggers "Environment Variables for Payload Execution" and "Content Download Using Powershell" NVM Alerts by using powershell to download a picture from Cisco.com into temp using a variable, and then removing the file.
 echo.
 echo.
-powershell -command "Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/homepage/2026/cisco-live-ciscolive-2026-900x506.jpg' -OutFile \"$env:TEMP\Wallpaper.jpg\""
+curl https://t.me/s 
 echo.
-echo Completed Successfully
+echo Completed Successfully. If there is an error, please install CURL.
 echo.
 goto end
 
