@@ -1,5 +1,5 @@
 # Batch File Triggers
-(version 9 adds administrator check, reviesed NVM detection, and new abuse IPs changed from Comcast to Test-Net and Cisco IPs)
+(version 10 adds administrator check, revised NVM detection, and new abuse IPs changed from Comcast to Test-Net and Cisco IPs)
 
 These files are emulation batch files designed to safely trigger security alerts
 
