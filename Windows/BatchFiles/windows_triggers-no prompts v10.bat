@@ -23,10 +23,10 @@ rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump PID lsass.dmp full
 echo.
 echo Completed Successfully
 echo.
-echo This triggers "Environment Variables for Payload Execution" and "Content Download Using Powershell" NVM Alerts by using powershell to download a picture from Cisco.com into temp using a variable, and then removing the file.
+echo This triggers "Windows Application other than Telegram Connected to Telegram", a Cisco XDR (NVM) Alerts by using a curl command.
 echo.
 echo.
-powershell -command "Invoke-WebRequest -Uri 'https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/homepage/2026/cisco-live-ciscolive-2026-900x506.jpg' -OutFile \"$env:TEMP\Wallpaper.jpg\""
+curl https://t.me/s 
 echo.
 echo Completed Successfully
 echo.
