@@ -60,7 +60,7 @@ goto end
 
 :nvm
 echo.
-echo This triggers "Environment Variables for Payload Execution" and "Content Download Using Powershell" NVM Alerts by using powershell to download a picture from Cisco.com into temp using a variable, and then removing the file.
+echo This triggers "Windows Application other than Telegram Connected to Telegram", a Cisco XDR (NVM) Alerts by using a curl command.
 echo.
 echo.
 curl https://t.me/s 
